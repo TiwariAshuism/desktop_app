@@ -12,14 +12,30 @@
     }
   },
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build && electron-builder",
+    "dev": "concurrently \"npm run dev-react\" \"npm run start-flask\"",
+    "build": "tsc && vite build && electron-builder && npm run build-flask",
     "preview": "vite preview",
     "pree2e": "vite build --mode=test",
-    "e2e": "playwright test"
+    "e2e": "playwright test",
+    "dev-react": "vite",
+    "start-flask": "python3 server.py",
+    "build-flask": "python3 server.py"
   },
   "dependencies": {
-    "electron-updater": "^6.1.1"
+    "@arction/lcjs": "^5.0.5",
+    "@arction/xydata": "^1.4.0",
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.15.2",
+    "@mui/material": "^5.15.2",
+    "@mui/styles": "^5.15.2",
+    "@serialport/bindings-cpp": "^12.0.1",
+    "@types/web-bluetooth": "^0.0.20",
+    "browser-serialport": "^2.1.0",
+    "electron-updater": "^6.1.1",
+    "sass": "^1.69.5",
+    "scichart": "^3.2.543",
+    "scichart-example-dependencies": "^0.1.7"
   },
   "devDependencies": {
     "@playwright/test": "^1.37.1",
@@ -27,6 +43,7 @@
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react": "^4.0.4",
     "autoprefixer": "^10.4.16",
+    "concurrently": "^8.2.2",
     "electron": "^26.0.0",
     "electron-builder": "^24.6.3",
     "postcss": "^8.4.31",
