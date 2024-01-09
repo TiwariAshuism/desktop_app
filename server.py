@@ -45,6 +45,10 @@ def connect(device_name):
 
             # Your connection logic here, e.g., interacting with the connected device
             print(f"Connected to device with name: {device_name}")
+            if(ble_connection.connected):
+                uart_service = UARTService(radio)
+                print(uart_service.read(20));
+            
 
             # For demonstration purposes, return a success message
             return jsonify({"status": "connected", "device_name": device_name})
@@ -54,10 +58,7 @@ def connect(device_name):
         return jsonify({"status": "error", "message": str(e)}), 400
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,port=5000)
 
-
-if __name__ == '__main__':
-    app.run(port=5000)
 
 
